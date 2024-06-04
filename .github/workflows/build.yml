@@ -25,7 +25,7 @@ jobs:
             MINGW: 1
             MINGW_PKG_PREFIX: x86_64-w64-mingw32
             MINGW_ASM_MASM_COMPILER: llvm-ml;-m64
-            CMAKE_DEFINES: -DCRASHPAD_ZLIB_SYSTEM=OFF -G Ninja
+            CMAKE_DEFINES: -DCRASHPAD_ZLIB_SYSTEM=OFF -DCRASHPAD_BUILD_TOOLS=OFF -G Ninja
           - name: LLVM-MINGW (arm64)
             platform: windows-latest
             MINGW: 1
