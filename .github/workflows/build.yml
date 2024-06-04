@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - getsentry
+      - '*'
   pull_request:
 
 jobs:
