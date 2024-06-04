@@ -6,6 +6,12 @@ target_link_libraries(crashpad_tools PRIVATE
     $<BUILD_INTERFACE:crashpad_interface>
 )
 
+if(MINGW)
+    target_compile_options(crashpad_tools PRIVATE
+        $<$<COMPILE_LANGUAGE:CXX>:-municode>
+    )
+endif()
+
 set_property(TARGET crashpad_tools PROPERTY EXPORT_NAME tools)
 add_library(crashpad::tools ALIAS crashpad_tools)
 
@@ -30,6 +36,13 @@ if(CRASHPAD_BUILD_TOOLS)
             WIN32_LEAN_AND_MEAN
             NOMINMAX
         )
+    elseif(MINGW)
+        target_compile_options(dump_minidump_annotations PUBLIC
+            "-municode"
+        )
+        if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+            target_link_options(dump_minidump_annotations PUBLIC "-mconsole")
+        endif()
     endif()
     crashpad_install_target(dump_minidump_annotations)
 
@@ -47,6 +60,13 @@ if(CRASHPAD_BUILD_TOOLS)
             WIN32_LEAN_AND_MEAN
             NOMINMAX
         )
+    elseif(MINGW)
+        target_compile_options(crashpad_database_util PUBLIC
+            "-municode"
+        )
+        if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+            target_link_options(crashpad_database_util PUBLIC "-mconsole")
+        endif()
     endif()
     crashpad_install_target(crashpad_database_util)
 
@@ -66,6 +86,13 @@ if(CRASHPAD_BUILD_TOOLS)
             WIN32_LEAN_AND_MEAN
             NOMINMAX
         )
+    elseif(MINGW)
+        target_compile_options(crashpad_http_upload PUBLIC
+            "-municode"
+        )
+        if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+            target_link_options(crashpad_http_upload PUBLIC "-mconsole")
+        endif()
     endif()
     crashpad_install_target(crashpad_http_upload)
 
@@ -84,6 +111,13 @@ if(CRASHPAD_BUILD_TOOLS)
             WIN32_LEAN_AND_MEAN
             NOMINMAX
         )
+    elseif(MINGW)
+        target_compile_options(crashpad_generate_dump PUBLIC
+            "-municode"
+        )
+        if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+            target_link_options(crashpad_generate_dump PUBLIC "-mconsole")
+        endif()
     endif()
     crashpad_install_target(crashpad_generate_dump)
 

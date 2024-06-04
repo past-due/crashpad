@@ -70,6 +70,8 @@ elseif(MINGW)
     list(APPEND COMPAT_SOURCES
         mingw/dbghelp.h
         mingw/winnt.h
+        mingw/time.cc
+        mingw/time.h
     )
 else()
     list(APPEND COMPAT_SOURCES
