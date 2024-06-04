@@ -30,7 +30,7 @@ jobs:
             platform: windows-latest
             MINGW: 1
             MINGW_PKG_PREFIX: aarch64-w64-mingw32
-            CMAKE_DEFINES: -DCRASHPAD_ZLIB_SYSTEM=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw_arm64.cmake -G Ninja
+            CMAKE_DEFINES: -DCRASHPAD_ZLIB_SYSTEM=OFF -DCRASHPAD_BUILD_TOOLS=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw_arm64.cmake -G Ninja
           - name: macOS
             platform: macos-latest
     name: ${{ matrix.name }}
